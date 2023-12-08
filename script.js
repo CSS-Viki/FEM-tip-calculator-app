@@ -17,7 +17,9 @@ function tipCalculator() {
   tipValuesContainer.addEventListener("click", (e) => {
     if (e.target.classList.contains("tip-value")) {
       const tips = parseInt(e.target.value);
-      tipAmount.textContent = `$${tips / totalPeople.value}`;
+      const tipPerPerson = tips / totalPeople.value;
+      const roundedOffTipPp = parseFloat(tipPerPerson.toFixed(2));
+      tipAmount.textContent = `$${roundedOffTipPp}`;
 
       const clickedElement = e.target;
 
@@ -34,8 +36,8 @@ function tipCalculator() {
       if (billTotal.value === "" && totalPeople.value === "") {
         totalAmountPp.textContent = `$${0.0}`;
       } else {
-      const totalPerPerson = Math.round(billTotal.value / totalPeople.value);
-        totalAmountPp.innerHTML = `$${
+        const totalPerPerson = Math.round(billTotal.value / totalPeople.value);
+        totalAmountPp.textContent = `$${
           totalPerPerson * (tips / 100) + totalPerPerson
         }`;
         reset.style.opacity = 1;
